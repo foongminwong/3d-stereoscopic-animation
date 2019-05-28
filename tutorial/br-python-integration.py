@@ -2,6 +2,7 @@ import os
 import bpy
 import bmesh
 import bertini_real
+import math
 import numpy as np
 
 bertini_real.data.gather()
@@ -49,8 +50,6 @@ bpy.context.scene.objects.link(object)
 mesh.from_pydata(vertex,[],faces)
 mesh.update(calc_edges=True)
 
-
-
 # Make object active
 bpy.context.scene.objects.active = object
 
@@ -66,8 +65,6 @@ bpy.ops.mesh.select_all(action='SELECT')
 # recalculate outside normals 
 bpy.ops.mesh.normals_make_consistent(inside=False)
 
-
-
 # go object mode again
 bpy.ops.object.editmode_toggle()
 
@@ -75,6 +72,29 @@ context = bpy.context
 scene = context.scene
 
 scene.render.use_multiview = True
+
+bpy.context.scene.render.image_settings.views_format = 'STEREO_3D'
+
+
+#---------#
+object.rotation_mode = 'XYZ'
+
+scene.frame_start = 1
+scene.frame_end = 10
+
+object.rotation_euler = (0, 0, 0)
+object.keyframe_insert('rotation_euler', index=2 ,frame=1)
+
+object.rotation_euler = (0, 0, math.radians(180))
+object.keyframe_insert('rotation_euler', index=2 ,frame=10)
+
+scene.render.use_stamp = 1
+scene.render.stamp_background = (0,0,0,1)
+
+scene.render.filepath = "render/rotate"
+scene.render.image_settings.file_format = "AVI_JPEG"
+bpy.ops.render.render(animation=True)
+
 
 
 
