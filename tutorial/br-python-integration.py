@@ -65,6 +65,9 @@ bpy.ops.mesh.select_all(action='SELECT')
 # recalculate outside normals 
 bpy.ops.mesh.normals_make_consistent(inside=False)
 
+# just flip normals
+bpy.ops.mesh.flip_normals() 
+
 # go object mode again
 bpy.ops.object.editmode_toggle()
 
@@ -80,13 +83,13 @@ bpy.context.scene.render.image_settings.views_format = 'STEREO_3D'
 object.rotation_mode = 'XYZ'
 
 scene.frame_start = 1
-scene.frame_end = 10
+scene.frame_end = 100
 
 object.rotation_euler = (0, 0, 0)
 object.keyframe_insert('rotation_euler', index=2 ,frame=1)
 
 object.rotation_euler = (0, 0, math.radians(180))
-object.keyframe_insert('rotation_euler', index=2 ,frame=10)
+object.keyframe_insert('rotation_euler', index=2 ,frame=100)
 
 scene.render.use_stamp = 1
 scene.render.stamp_background = (0,0,0,1)
