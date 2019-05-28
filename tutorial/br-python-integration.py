@@ -1,4 +1,6 @@
+import os
 import bpy
+import bmesh
 import bertini_real
 import numpy as np
 
@@ -15,7 +17,8 @@ def extract_points(data):
             q[i] = v['point'][i].real
         points.append(q)
     return points
-      
+
+#Define vertices, faces, edges
 points = extract_points(data)
 
 face = data.surface.surface_sampler_data
@@ -30,19 +33,13 @@ faces = []
 for x in face:
     for y in x:
         faces.append(y)
-    #faces.append(face)
-#Define vertices, faces, edges
-#vertex = [(0,0,0),(0,4,0),(4,4,0),(4,0,0),(0,0,4),(0,4,4),(4,4,4),(4,0,4)]
-#faces = [(0,1,2,3), (4,5,6,7), (0,4,5,1), (1,5,6,2), (2,6,7,3), (3,7,4,0)]
-#vertex = [tuple(l) for l in vertex]
-#faces = [tuple(l) for l in faces]
 
-#print(len(faces))
-#print(len(vertex))
+# Retrieve filename
+fileName = os.getcwd().split(os.sep)[-1]
 
 #Define mesh and object
-mesh = bpy.data.meshes.new("Sphere")
-object = bpy.data.objects.new("Sphere", mesh)
+mesh = bpy.data.meshes.new(fileName)
+object = bpy.data.objects.new(fileName, mesh)
  
 #Set location and scene of object
 object.location = bpy.context.scene.cursor_location
@@ -50,7 +47,34 @@ bpy.context.scene.objects.link(object)
  
 #Create mesh
 mesh.from_pydata(vertex,[],faces)
-#mesh.update()
 mesh.update(calc_edges=True)
+
+
+
+# Make object active
+bpy.context.scene.objects.active = object
+
+# Scale object
+object.scale = (2,2,2)
+
+# go edit mode
+bpy.ops.object.mode_set(mode='EDIT')
+
+# select all faces
+bpy.ops.mesh.select_all(action='SELECT')
+
+# recalculate outside normals 
+bpy.ops.mesh.normals_make_consistent(inside=False)
+
+
+
+# go object mode again
+bpy.ops.object.editmode_toggle()
+
+context = bpy.context
+scene = context.scene
+
+scene.render.use_multiview = True
+
 
 
