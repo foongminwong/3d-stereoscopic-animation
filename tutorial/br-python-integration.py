@@ -4,6 +4,12 @@ import bertini_real
 import math
 import numpy as np
 
+# Delete any meshes before starting create a new mesh
+item='MESH'
+bpy.ops.object.select_all(action='DESELECT')
+bpy.ops.object.select_by_type(type=item)
+bpy.ops.object.delete()
+
 bertini_real.data.gather()
 data = bertini_real.data.ReadMostRecent()
 
@@ -92,4 +98,4 @@ bpy.ops.render.render(animation=True)
 
 print("Export " + '\x1b[0;33;40m' + "Anaglyph 3D " + '\x1b[0m' + '\x1b[0;35;40m' + fileName + '\x1b[0m' + " successfully")
 
-#bpy.ops.wm.quit_blender()
+bpy.ops.wm.quit_blender()
