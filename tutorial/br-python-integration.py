@@ -1,6 +1,5 @@
 import os
 import bpy
-import bmesh
 import bertini_real
 import math
 import numpy as np
@@ -19,7 +18,8 @@ def extract_points(data):
         points.append(q)
     return points
 
-#Define vertices, faces, edges
+
+#Define vertices, faces
 points = extract_points(data)
 
 face = data.surface.surface_sampler_data
@@ -34,14 +34,14 @@ fileName = os.getcwd().split(os.sep)[-1]
 #Define mesh and object
 mesh = bpy.data.meshes.new(fileName)
 object = bpy.data.objects.new(fileName, mesh)
- 
+
 #Set location and scene of object
 object.location = bpy.context.scene.cursor_location
 bpy.context.scene.objects.link(object)
- 
-#Create mesh
+
+#Create mesh (error here, it works)
 mesh.from_pydata(vertex,[],faces)
-mesh.update(calc_edges=True)
+mesh.update()
 
 # Make object active
 bpy.context.scene.objects.active = object
@@ -70,18 +70,18 @@ bpy.context.scene.render.image_settings.views_format = 'STEREO_3D'
 
 bpy.context.scene.cycles.film_exposure = 7.00
 
+#-----Start rotation----#
 
-#---------#
 object.rotation_mode = 'XYZ'
 
 scene.frame_start = 1
-scene.frame_end = 25
+scene.frame_end = 100
 
 object.rotation_euler = (0, 0, 0)
 object.keyframe_insert('rotation_euler', index=2 ,frame=1)
 
 object.rotation_euler = (0, 0, math.radians(180))
-object.keyframe_insert('rotation_euler', index=2 ,frame=25)
+object.keyframe_insert('rotation_euler', index=2 ,frame=100)
 
 scene.render.use_stamp = 1
 scene.render.stamp_background = (0,0,0,0)
@@ -90,6 +90,6 @@ scene.render.filepath = "render/rotate"
 scene.render.image_settings.file_format = "AVI_JPEG"
 bpy.ops.render.render(animation=True)
 
-print("Export " + '\x1b[0;35;40m' + "Anaglyph 3D of " + fileName + ".stl" + '\x1b[0m' + " successfully")
+print("Export " + '\x1b[0;33;40m' + "Anaglyph 3D " + '\x1b[0m' + '\x1b[0;35;40m' + fileName + '\x1b[0m' + " successfully")
 
-
+#bpy.ops.wm.quit_blender()
