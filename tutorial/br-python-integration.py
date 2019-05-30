@@ -128,7 +128,7 @@ obj.keyframe_insert(data_path='rotation_euler',frame=300)
 
 
 scene.render.use_stamp = 1
-scene.render.stamp_background = (0,0,0,0)
+scene.render.stamp_background = (0,0,0,1)
 
 scene.render.filepath = "render/rotate"
 scene.render.image_settings.file_format = "AVI_JPEG"
