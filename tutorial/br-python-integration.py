@@ -78,7 +78,7 @@ bpy.context.scene.render.image_settings.views_format = 'STEREO_3D'
 bpy.context.scene.cycles.film_exposure = 7.00
 
 #-----Start rotation----#
-
+"""
 object.rotation_mode = 'XYZ'
 
 scene.frame_start = 1
@@ -87,8 +87,33 @@ scene.frame_end = 100
 object.rotation_euler = (0, 0, 0)
 object.keyframe_insert('rotation_euler', index=2 ,frame=1)
 
-object.rotation_euler = (0, 0, math.radians(180))
-object.keyframe_insert('rotation_euler', index=2 ,frame=100)
+
+object.rotation_euler = (0, 0,math.radians(180))
+object.keyframe_insert('rotation_euler', index=2 ,frame=80)
+"""
+
+obj = bpy.context.active_object
+startanim = 0
+endeanim =300
+bpy.data.scenes['Scene'].frame_start = startanim
+bpy.data.scenes['Scene'].frame_end = endeanim
+
+# rotate nothing
+obj.rotation_euler=(0.0,0.0,0.0)
+obj.keyframe_insert(data_path='rotation_euler',frame=0)
+
+# rotate at the z-axis
+obj.rotation_euler=(0,0,math.pi * 2)
+obj.keyframe_insert(data_path='rotation_euler',frame=100)
+
+# rotate at the y-axis
+obj.rotation_euler=(0,math.pi * 2,math.pi * 2)
+obj.keyframe_insert(data_path='rotation_euler',frame=200)
+
+# rotate at the x-axis
+obj.rotation_euler=(math.pi * 2,math.pi * 2,math.pi * 2)
+obj.keyframe_insert(data_path='rotation_euler',frame=300)
+
 
 scene.render.use_stamp = 1
 scene.render.stamp_background = (0,0,0,0)
@@ -100,3 +125,4 @@ bpy.ops.render.render(animation=True)
 print("Export " + '\x1b[0;33;40m' + "Anaglyph 3D " + '\x1b[0m' + '\x1b[0;35;40m' + fileName + '\x1b[0m' + " successfully")
 
 bpy.ops.wm.quit_blender()
+
