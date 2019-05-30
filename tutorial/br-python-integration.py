@@ -52,9 +52,21 @@ mesh.update()
 # Make object active
 bpy.context.scene.objects.active = object
 
+
+# Retrieve object dimensions
+object_dimensions = object.dimensions
+
 # Resize/ Scale object
-bpy.context.object.dimensions = 3,3,3;
-# object.scale = (2,2,2)
+bpy.context.object.dimensions = object.dimensions[0],object.dimensions[1],3; # resize z to 3
+
+# Grab the current object scale
+object_scale = object.scale
+
+# Scale them by z scale
+object.scale = (object_scale[2],object_scale[2],object_scale[2])
+
+# Rescale them (shoudl try ratio method?)
+object.scale = (2,2,2)
 
 # go edit mode
 bpy.ops.object.mode_set(mode='EDIT')
