@@ -5,6 +5,6 @@ Summer 2019
 
 Tools: Blender, Bertini_real, Python
 
-Related: Anaglyph 3D, 3D animation
+Related: Anaglyph 3D, 3D animation, Stereoscopic 3D
 
 Faculty Mentor: Dr. Danielle Amethyst Brake
