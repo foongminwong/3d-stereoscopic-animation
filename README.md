@@ -7,4 +7,4 @@ Tools: Blender, Bertini_real, Python
 
 Related: Anaglyph 3D, 3D animation
 
-Faculty Mentor: Dr. Danielle Brake
+Faculty Mentor: Dr. Danielle Amethyst Brake
