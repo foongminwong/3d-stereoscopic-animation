@@ -106,28 +106,6 @@ class Anaglyph():
 
         return object, scene
 
-    def rotate_z(self, object, scene):
-        object.rotation_mode = 'XYZ'
-        scene.frame_start = 1
-        scene.frame_end = 100
-
-        object.rotation_euler = (0, 0, 0)
-        object.keyframe_insert('rotation_euler', index=2, frame=1)
-
-        object.rotation_euler = (0, 0, math.radians(180))
-        object.keyframe_insert('rotation_euler', index=2, frame=100)
-
-        # Retrieve filename
-        fileName = os.getcwd().split(os.sep)[-1]
-
-        scene.render.filepath = "render/rotate"
-        scene.render.image_settings.file_format = "AVI_JPEG"
-
-        bpy.ops.render.render(animation=True)
-
-        print("Export " + '\x1b[0;33;40m' + "Anaglyph 3D " + '\x1b[0m' +
-              '\x1b[0;35;40m' + fileName + '\x1b[0m' + " successfully")
-
     def rotate_xyz(self, object, scene):
 
         scene.frame_start = 0
@@ -152,7 +130,7 @@ class Anaglyph():
         # Retrieve filename
         fileName = os.getcwd().split(os.sep)[-1]
 
-        scene.render.filepath = "render/rotate"
+        scene.render.filepath = "render/rotate_xyz_"
         scene.render.image_settings.file_format = "AVI_JPEG"
         bpy.ops.render.render(animation=True)
 
@@ -164,11 +142,10 @@ def create_movie(data=None):
     surface = Anaglyph(data)
     vertex, faces = surface.generate_fv()
     object, scene = surface.generate_obj_scene(vertex, faces)
-    # surface.rotate_z(object, scene)
     surface.rotate_xyz(object, scene)
 
 
 create_movie()
 
 
-#bpy.ops.wm.quit_blender()
+bpy.ops.wm.quit_blender()

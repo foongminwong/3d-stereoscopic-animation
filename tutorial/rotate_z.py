@@ -9,6 +9,7 @@ item = 'MESH'
 bpy.ops.object.select_all(action='DESELECT')
 bpy.ops.object.select_by_type(type=item)
 bpy.ops.object.delete()
+bpy.context.scene.render.use_overwrite = False
 
 
 def extract_points(self):
@@ -22,7 +23,6 @@ def extract_points(self):
         points.append(q)
 
     return points
-
 
 class Anaglyph():
 
@@ -120,40 +120,9 @@ class Anaglyph():
         # Retrieve filename
         fileName = os.getcwd().split(os.sep)[-1]
 
-        scene.render.filepath = "render/rotate"
+        scene.render.filepath = "render/rotate_z_"
         scene.render.image_settings.file_format = "AVI_JPEG"
 
-        bpy.ops.render.render(animation=True)
-
-        print("Export " + '\x1b[0;33;40m' + "Anaglyph 3D " + '\x1b[0m' +
-              '\x1b[0;35;40m' + fileName + '\x1b[0m' + " successfully")
-
-    def rotate_xyz(self, object, scene):
-
-        scene.frame_start = 0
-        scene.frame_end = 300
-
-        # rotate nothing
-        object.rotation_euler = (0.0, 0.0, 0.0)
-        object.keyframe_insert(data_path='rotation_euler', frame=0)
-
-        # rotate at the z-axis
-        object.rotation_euler = (0, 0, math.pi * 2)
-        object.keyframe_insert(data_path='rotation_euler', frame=100)
-
-        # rotate at the y-axis
-        object.rotation_euler = (0, math.pi * 2, math.pi * 2)
-        object.keyframe_insert(data_path='rotation_euler', frame=200)
-
-        # rotate at the x-axis
-        object.rotation_euler = (math.pi * 2, math.pi * 2, math.pi * 2)
-        object.keyframe_insert(data_path='rotation_euler', frame=300)
-
-        # Retrieve filename
-        fileName = os.getcwd().split(os.sep)[-1]
-
-        scene.render.filepath = "render/rotate"
-        scene.render.image_settings.file_format = "AVI_JPEG"
         bpy.ops.render.render(animation=True)
 
         print("Export " + '\x1b[0;33;40m' + "Anaglyph 3D " + '\x1b[0m' +
@@ -164,11 +133,10 @@ def create_movie(data=None):
     surface = Anaglyph(data)
     vertex, faces = surface.generate_fv()
     object, scene = surface.generate_obj_scene(vertex, faces)
-    # surface.rotate_z(object, scene)
-    surface.rotate_xyz(object, scene)
+    surface.rotate_z(object, scene)
 
 
 create_movie()
 
 
-#bpy.ops.wm.quit_blender()
+bpy.ops.wm.quit_blender()
