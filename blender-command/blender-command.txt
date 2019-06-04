@@ -1,0 +1,1 @@
+blender -noaudio -b -P ~/bertini_real/python/bertini_real/anaglypy/rotate_z.py
