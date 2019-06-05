@@ -1,0 +1,17 @@
+1) Find the directory of your blender python modules folder.
+For example (MacOS)
+PWD: Applications/Blender.app/Contents/Resources/2.79/scripts/modules
+pip install -t Applications/Blender.app/Contents/Resources/2.79/scripts/modules dill
+
+-dill
+-matplotlib (--upgrade)
+-numpy (pip3 uninstall numpy - not working)/pip install --upgrade --ignore-installed --install-option '--install-data=/usr/local' numpy - not working
+-scipy
+
+
+**
+
+install blender 2.80 (which uses python3.7m)
+pip3 install -t /Applications/blender2.8/blender.app/Contents/Resources/2.80/scripts/modules matplotlib --upgrade
+
+blender -b -P ../bertini_real/python/bertini_real/anaglypy/rotate_z.py
