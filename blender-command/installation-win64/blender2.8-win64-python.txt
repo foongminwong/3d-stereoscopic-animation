@@ -1,0 +1,40 @@
+In windows Powershell or mobaxterm (In windows)
+
+Directory: C:\Users\foongmin\Downloads\blender2.8\blender2.8\2.80\scripts\modules
+
+Command: pip install -t C:\Users\foongmin\Downloads\blender2.8\blender2.8\2.80\scripts\modules sympy scipy numpy algopy mpmath dill matplotlib
+
+Command: pip install -t C:\Users\foongmin\Downloads\blender2.8\blender2.8\2.80\scripts\modules trimesh
+
+Command: pip install -t C:\Users\foongmin\Downloads\blender2.8\blender2.8\2.80\scripts\modules cython triangle glumpy
+
+pip install cython --upgrade
+
+traingle needs windows 10 sdk
+
+
+
+In WSL:
+
+pip3 install -t /home/foongminwong/blender2.8/2.80/scripts/modules --system dill matplotlib sympy scipy numpy algopy mpmath pillow --upgrade
+pip3 install -t /home/foongminwong/blender2.8/2.80/scripts/modules --system trimesh shapely cython glumpy pyopengl --upgrade
+pip3 install cython numpy pillow matplotlib dill scipy glumpy pyopengl triangle cython
+
+vim setup.cfg
+
+setup.cfg
+[install]
+prefix=
+
+sudo apt-get install python3.7-dev   
+
+Python needs to be 3.7, make sure your pip/pip3 and python/python3 are in version 3.7
+
+https://github.com/scrapy/scrapy/issues/2115
+
+https://askubuntu.com/questions/480908/problem-with-update-manager-no-module-named-apt-pkg-in-ubuntu-13-10-having-i 
+https://stackoverflow.com/questions/26053982/setup-script-exited-with-error-command-x86-64-linux-gnu-gcc-failed-with-exit
+
+
+
+blender -noaudio -b -P ~/bertini_real/python/bertini_real/anaglypy/rotate_z.py
