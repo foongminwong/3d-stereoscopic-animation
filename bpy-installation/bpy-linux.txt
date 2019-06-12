@@ -1,0 +1,12 @@
+WITH_PYTHON_INSTALL=OFF
+WITH_PLAYER=OFF
+WITH_PYTHON_MODULE=ON
+
+1. use sudo
+2. python version must align with the python version in blender too
+
+https://wiki.blender.org/wiki/Building_Blender/Linux/Ubuntu
+https://archive.blender.org/wiki/index.php/User:Ideasman42/BlenderAsPyModule/
+
+
+edit CMakeCache.txt
