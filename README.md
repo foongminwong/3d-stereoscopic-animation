@@ -1,13 +1,10 @@
-# 3d-stereoscopic-animation
-Summer 2019
-
-3D stereoscopic animations of algebraic surfaces using Bertini_real and Blender through Python
+**3D stereoscopic animations of algebraic surfaces using Bertini_real and Blender through Python - Summer 2019 **
 
 Tools: Blender, Bertini_real, Python, JSON, Bash
 
 Related: Anaglyph 3D, 3D animation, Stereoscopic 3D
 
-Faculty Mentor: Dr. Danielle Amethyst Brake
+Faculty Mentor: [Dr. Danielle Amethyst Brake](https://danielleamethyst.org/)
 
 Project Outcome:
 
