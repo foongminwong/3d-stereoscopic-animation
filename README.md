@@ -1,4 +1,4 @@
-**3D stereoscopic animations of algebraic surfaces using Bertini_real and Blender through Python - Summer 2019 **
+# 3D stereoscopic animations of algebraic surfaces using Bertini_real and Blender through Python - Summer 2019
 
 Tools: Blender, Bertini_real, Python, JSON, Bash
 
