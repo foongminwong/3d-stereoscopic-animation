@@ -2,9 +2,9 @@
 
 Tools: Blender, Bertini_real, Python, JSON, Bash
 
-Related: Anaglyph 3D, 3D animation, Stereoscopic 3D
+Related: Anaglyph 3D, 3D animation, Stereoscopic 3D, Computational Geometry
 
-Faculty Mentor: [Dr. Danielle Amethyst Brake](https://danielleamethyst.org/)
+Faculty Mentor: [Dr. Silviana Amethyst](https://danielleamethyst.org/)
 
 Project Outcome:
 
