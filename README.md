@@ -8,4 +8,4 @@ Faculty Mentor: [Dr. Silviana Amethyst](https://danielleamethyst.org/)
 
 Project Outcome:
 
-<img src="https://github.com/foongminwong/3d-stereoscopic-animation/blob/master/3d-movies-by-pyscript/20190723_gif/gif/family/both_multi.gif">
+<img src="https://github.com/foongminwong/3d-stereoscopic-animation/blob/master/3d-movies-by-pyscript/20190723_gif/gif/family/daisy_crixxi_torus_croissant.gif">
